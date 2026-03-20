@@ -5,6 +5,7 @@
     place-items: center;
     justify-content: center;
     position: relative;
+    z-index: 2;
     opacity: 1;
     height: auto;
     margin: auto;
@@ -46,6 +47,8 @@
 .publications-container {
     width: var(--cWidth);
     max-width: 1400px;
+    position: relative;
+    z-index: 2;
 }
 
 .publications-grid {
@@ -66,6 +69,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    z-index: 2;
 }
 
 .pub-card:hover {
@@ -146,10 +150,8 @@
     margin: 0;
 }
 
-/* Call to Action Button */
 .pub-cta {
     display: inline-block;
-    margin-top: auto;
     padding: 10px 20px;
     background: transparent;
     color: var(--accentColor);
@@ -173,7 +175,6 @@
     opacity: 1;
 }
 
-/* Certification Details List styling */
 .pub-credentials-list {
     display: flex;
     flex-direction: column;
@@ -209,6 +210,7 @@
     color: rgba(255, 255, 255, 0.5);
     font-weight: 300;
     font-family: "Geist", sans-serif;
+    flex-wrap: wrap;
 }
 
 .pub-dot {
@@ -217,8 +219,6 @@
     opacity: 0.5;
 }
 
-
-/* Corner Accents */
 .pub-card::before,
 .pub-corner::before,
 .pub-card::after,
@@ -269,8 +269,6 @@
     border-color: var(--accentColor);
 }
 
-
-/* Base Responsive Alignment */
 @media only screen and (max-width: 1400px) {
     .publications-section h2 {
         font-size: 50px;

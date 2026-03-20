@@ -15,85 +15,114 @@ const Education = () => {
     cardRefs.current[index] = el;
   };
 
+  const isMobile = () => window.innerWidth <= 768;
+
   const handleCardClick = (index: number) => {
-    // Check if device supports touch/mobile
-    if (window.matchMedia("(hover: none)").matches) {
-      setActiveIndex(activeIndex === index ? null : index);
-    }
+    if (!isMobile()) return;
+    setActiveIndex((prev) => (prev === index ? null : index));
   };
 
   useEffect(() => {
+    if (!sectionRef.current) return;
+
     const ctx = gsap.context(() => {
-      // Title Animation
       if (titleRef.current) {
         gsap.fromTo(
           titleRef.current,
-          { opacity: 0, y: 50 },
+          { autoAlpha: 0, y: 50 },
           {
-            opacity: 1,
+            autoAlpha: 1,
             y: 0,
             duration: 1,
             ease: "power3.out",
             scrollTrigger: {
               trigger: titleRef.current,
               start: "top 85%",
+              once: true,
             },
           }
         );
       }
 
-      // Cards Staggered Reveal
       cardRefs.current.forEach((card, i) => {
-        if (card) {
-          gsap.fromTo(
-            card,
-            { opacity: 0, y: 50, scale: 0.95 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.8,
-              ease: "back.out(1.7)",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 90%",
-              },
-              delay: i * 0.2, // Stagger effect
-            }
-          );
-        }
+        if (!card) return;
+
+        gsap.fromTo(
+          card,
+          { autoAlpha: 0, y: 50, scale: 0.95 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+            delay: i * 0.15,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
       });
+
+      ScrollTrigger.refresh();
     }, sectionRef);
 
-    return () => ctx.revert();
+    const onResize = () => {
+      if (!isMobile()) {
+        setActiveIndex(null);
+      }
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <div className="education-section section-container" id="education" ref={sectionRef}>
+    <div
+      className="education-section section-container"
+      id="education"
+      ref={sectionRef}
+    >
       <div className="education-container">
         <h2 ref={titleRef}>
           My <span>Education</span>
         </h2>
 
         <div className="education-cards">
-          {/* USC Card */}
           <div
-            className={`education-card ${activeIndex === 0 ? 'education-active' : ''}`}
+            className={`education-card ${activeIndex === 0 ? "education-active" : ""}`}
             ref={(el) => setCardRef(el, 0)}
             onClick={() => handleCardClick(0)}
           >
             <div className="education-card-inner">
               <div className="education-header">
                 <h3>University of Southern California</h3>
-                <div className="education-date">Expected <span>May 2027</span></div>
+                <div className="education-date">
+                  Expected <span>May 2027</span>
+                </div>
               </div>
+
               <h4>Master of Science in Computer Science</h4>
               <p className="education-location">Los Angeles, California</p>
 
               <div className="education-extra">
-                <p className="education-intro">Computer Science graduate student focused on AI, machine learning, NLP, and scalable software systems, with strong interest in applied research and production grade engineering.</p>
+                <p className="education-intro">
+                  Computer Science graduate student focused on AI, machine
+                  learning, NLP, and scalable software systems, with strong
+                  interest in applied research and production grade engineering.
+                </p>
+
                 <p className="education-gpa">GPA: 3.65/4.0</p>
+
                 <h5>RELEVANT COURSES</h5>
+
                 <div className="education-course-tags">
                   <span>Analysis of Algorithms</span>
                   <span>Machine Learning for Data Science</span>
@@ -103,31 +132,42 @@ const Education = () => {
                   <span>Applied Data Science</span>
                 </div>
               </div>
-
             </div>
+
             <div className="edu-arrow"></div>
             <div className="edu-corner"></div>
           </div>
 
-          {/* SPPU Card */}
           <div
-            className={`education-card ${activeIndex === 1 ? 'education-active' : ''}`}
+            className={`education-card ${activeIndex === 1 ? "education-active" : ""}`}
             ref={(el) => setCardRef(el, 1)}
             onClick={() => handleCardClick(1)}
           >
             <div className="education-card-inner">
               <div className="education-header">
                 <h3>Savitribai Phule Pune University</h3>
-                <div className="education-date">Graduated <span>2022</span></div>
+                <div className="education-date">
+                  Graduated <span>2022</span>
+                </div>
               </div>
+
               <h4>Bachelor of Engineering in Computer Engineering</h4>
               <p className="education-location">Pune, India</p>
 
               <div className="education-extra">
-                <p className="education-intro">Built a strong foundation in computer engineering through core coursework in algorithms, systems, software engineering, databases, AI, analytics, and human centered computing.</p>
+                <p className="education-intro">
+                  Built a strong foundation in computer engineering through core
+                  coursework in algorithms, systems, software engineering,
+                  databases, AI, analytics, and human centered computing.
+                </p>
+
                 <p className="education-gpa">CGPA: 9.51/10</p>
-                <p className="education-distinction">First Class with Distinction</p>
+                <p className="education-distinction">
+                  First Class with Distinction
+                </p>
+
                 <h5>RELEVANT COURSES</h5>
+
                 <div className="education-course-tags">
                   <span>Data Structures and Algorithms</span>
                   <span>Database Management Systems</span>
@@ -146,8 +186,8 @@ const Education = () => {
                   <span>Soft Computing and Optimization Algorithms</span>
                 </div>
               </div>
-
             </div>
+
             <div className="edu-arrow"></div>
             <div className="edu-corner"></div>
           </div>

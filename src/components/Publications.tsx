@@ -16,19 +16,22 @@ const Publications = () => {
     };
 
     useEffect(() => {
+        if (!sectionRef.current) return;
+
         const ctx = gsap.context(() => {
             if (titleRef.current) {
                 gsap.fromTo(
                     titleRef.current,
-                    { opacity: 0, y: 50 },
+                    { autoAlpha: 0, y: 50 },
                     {
-                        opacity: 1,
+                        autoAlpha: 1,
                         y: 0,
                         duration: 1,
                         ease: "power3.out",
                         scrollTrigger: {
                             trigger: titleRef.current,
                             start: "top 85%",
+                            once: true,
                         },
                     }
                 );
@@ -37,44 +40,57 @@ const Publications = () => {
             if (subtitleRef.current) {
                 gsap.fromTo(
                     subtitleRef.current,
-                    { opacity: 0, y: 30 },
+                    { autoAlpha: 0, y: 30 },
                     {
-                        opacity: 1,
+                        autoAlpha: 1,
                         y: 0,
                         duration: 1,
                         ease: "power3.out",
-                        delay: 0.2,
+                        delay: 0.15,
                         scrollTrigger: {
-                            trigger: titleRef.current,
-                            start: "top 85%",
+                            trigger: subtitleRef.current,
+                            start: "top 88%",
+                            once: true,
                         },
                     }
                 );
             }
 
             cardRefs.current.forEach((card, i) => {
-                if (card) {
-                    gsap.fromTo(
-                        card,
-                        { opacity: 0, y: 50, scale: 0.95 },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            scale: 1,
-                            duration: 0.8,
-                            ease: "back.out(1.5)",
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 90%",
-                            },
-                            delay: i * 0.2,
-                        }
-                    );
-                }
+                if (!card) return;
+
+                gsap.fromTo(
+                    card,
+                    { autoAlpha: 0, y: 50, scale: 0.96 },
+                    {
+                        autoAlpha: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: "back.out(1.5)",
+                        delay: i * 0.15,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 90%",
+                            once: true,
+                        },
+                    }
+                );
             });
+
+            ScrollTrigger.refresh();
         }, sectionRef);
 
-        return () => ctx.revert();
+        const onResize = () => {
+            ScrollTrigger.refresh();
+        };
+
+        window.addEventListener("resize", onResize);
+
+        return () => {
+            window.removeEventListener("resize", onResize);
+            ctx.revert();
+        };
     }, []);
 
     return (
@@ -86,7 +102,8 @@ const Publications = () => {
             <div className="publications-container">
                 <h2 ref={titleRef}>
                     Publications <span>&</span>
-                    <br /> Certifications
+                    <br />
+                    Certifications
                 </h2>
 
                 <p className="publications-subtitle" ref={subtitleRef}>
@@ -107,7 +124,7 @@ const Publications = () => {
                                     Android Application for Visually Impaired People Based on AI
                                     Technology
                                 </h4>
-                                <p className="pub-meta">IRJMETS &bull; 2022</p>
+                                <p className="pub-meta">IRJMETS • 2022</p>
                                 <p className="pub-description">
                                     Published a research paper on an AI based Android application
                                     designed to assist visually impaired users through intelligent
@@ -157,7 +174,7 @@ const Publications = () => {
                             <div className="pub-content">
                                 <h3>Technical Certifications</h3>
                                 <h4>Professional Learning & Credentials</h4>
-                                <p className="pub-meta">Microsoft &bull; Coursera &bull; HackerRank</p>
+                                <p className="pub-meta">Microsoft • Coursera • HackerRank</p>
 
                                 <div className="pub-credentials-list">
                                     <a
@@ -171,7 +188,7 @@ const Publications = () => {
                                         </div>
                                         <div className="pub-credential-details">
                                             <span>Microsoft</span>
-                                            <span className="pub-dot">&bull;</span>
+                                            <span className="pub-dot">•</span>
                                             <span>2022</span>
                                         </div>
                                     </a>
@@ -182,7 +199,7 @@ const Publications = () => {
                                         </div>
                                         <div className="pub-credential-details">
                                             <span>Coursera</span>
-                                            <span className="pub-dot">&bull;</span>
+                                            <span className="pub-dot">•</span>
                                             <span>2020</span>
                                         </div>
                                     </div>

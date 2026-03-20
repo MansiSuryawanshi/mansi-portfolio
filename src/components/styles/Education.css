@@ -5,6 +5,7 @@
     place-items: center;
     justify-content: center;
     position: relative;
+    z-index: 2;
     opacity: 1;
     height: auto;
     margin: auto;
@@ -35,6 +36,8 @@
 .education-container {
     width: var(--cWidth);
     max-width: 1200px;
+    position: relative;
+    z-index: 2;
 }
 
 .education-cards {
@@ -45,7 +48,6 @@
     margin: 0 auto;
 }
 
-/* User Provided Logic */
 .education-card {
     width: 100%;
     padding: 40px 50px;
@@ -56,12 +58,15 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     transform-origin: center;
     overflow: hidden;
+    z-index: 2;
 }
 
 .education-card-inner {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative;
+    z-index: 2;
 }
 
 .education-header {
@@ -109,7 +114,6 @@
     opacity: 0.6;
 }
 
-/* Base Expanded Elements Setup */
 .education-extra {
     max-height: 0;
     overflow: hidden;
@@ -127,7 +131,8 @@
     margin-top: 20px;
 }
 
-.education-card:hover {
+.education-card:hover,
+.education-card.education-active {
     background: rgba(255, 255, 255, 0.04);
     box-shadow: 0 10px 40px -10px rgba(20, 184, 166, 0.1);
     border: 1px solid rgba(20, 184, 166, 0.3);
@@ -172,7 +177,6 @@
     transform: translate(-50%, -50%) rotate(135deg);
 }
 
-/* Individual interior fade transitions */
 .education-intro,
 .education-gpa,
 .education-distinction,
@@ -231,7 +235,6 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Specific text overrides from user */
 .education-distinction {
     color: var(--accentColor);
     font-style: italic;
@@ -242,7 +245,6 @@
     font-weight: 400;
 }
 
-/* Accents matching WhatIDo style */
 .education-card::before,
 .edu-corner::before,
 .education-card::after,
@@ -296,7 +298,6 @@
     border-color: var(--accentColor);
 }
 
-/* Responsiveness overrides */
 @media only screen and (max-width: 1400px) {
     .education-section h2 {
         font-size: 50px;
@@ -387,5 +388,21 @@
 
     .education-course-tags span {
         font-size: 12px;
+    }
+
+    .education-extra {
+        max-height: none;
+        overflow: visible;
+        opacity: 1;
+        transform: none;
+        margin-top: 16px;
+    }
+
+    .education-intro,
+    .education-gpa,
+    .education-distinction,
+    .education-extra h5,
+    .education-course-tags {
+        opacity: 1;
     }
 }
