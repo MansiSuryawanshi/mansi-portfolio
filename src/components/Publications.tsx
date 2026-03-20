@@ -15,8 +15,33 @@ const Publications = () => {
         cardRefs.current[index] = el;
     };
 
+    const isMobile = () => window.innerWidth <= 768;
+
     useEffect(() => {
         if (!sectionRef.current) return;
+
+        const mobile = isMobile();
+
+        if (mobile) {
+            if (titleRef.current) {
+                gsap.set(titleRef.current, { autoAlpha: 1, y: 0, clearProps: "all" });
+            }
+
+            if (subtitleRef.current) {
+                gsap.set(subtitleRef.current, { autoAlpha: 1, y: 0, clearProps: "all" });
+            }
+
+            cardRefs.current.forEach((card) => {
+                if (!card) return;
+                gsap.set(card, { autoAlpha: 1, y: 0, scale: 1, clearProps: "all" });
+            });
+
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 300);
+
+            return;
+        }
 
         const ctx = gsap.context(() => {
             if (titleRef.current) {
