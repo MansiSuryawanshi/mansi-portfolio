@@ -1,0 +1,364 @@
+.publications-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 1;
+    height: auto;
+    margin: auto;
+    margin-bottom: 250px;
+    padding: 120px 0px;
+}
+
+.publications-section h2 {
+    font-size: 70px;
+    line-height: 70px;
+    font-weight: 400;
+    text-align: center;
+    background: linear-gradient(0deg, #0d9488, #ffffff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.publications-section h2>span {
+    font-family: "Geist", sans-serif;
+    font-weight: 300;
+}
+
+.publications-subtitle {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 90px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.5px;
+}
+
+.publications-container {
+    width: var(--cWidth);
+    max-width: 1400px;
+}
+
+.publications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+}
+
+.pub-card {
+    width: 100%;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transform-origin: center;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pub-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 40px -10px rgba(20, 184, 166, 0.15);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    transform: translateY(-10px);
+}
+
+.pub-card-inner {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
+.pub-header {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.pub-category {
+    font-size: 12px;
+    font-family: "Geist", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accentColor);
+    padding: 6px 14px;
+    background: rgba(20, 184, 166, 0.1);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    border-radius: 30px;
+    font-weight: 400;
+}
+
+.pub-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.pub-card h3 {
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    margin: 0 0 15px 0;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.pub-card h4 {
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+    margin: 0 0 20px 0;
+    color: #a5f3fc;
+}
+
+.pub-meta {
+    font-family: "Geist", sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 25px 0;
+    text-transform: uppercase;
+}
+
+.pub-description {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* Call to Action Button */
+.pub-cta {
+    display: inline-block;
+    margin-top: auto;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--accentColor);
+    border: 1px solid var(--accentColor);
+    border-radius: 30px;
+    font-size: 14px;
+    font-family: "Geist", sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: max-content;
+    align-self: flex-start;
+    justify-self: end;
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+.pub-cta:hover {
+    background: rgba(20, 184, 166, 0.1);
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.3);
+    opacity: 1;
+}
+
+/* Certification Details List styling */
+.pub-credentials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.pub-credential-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid var(--accentColor);
+    padding: 12px 15px;
+    border-radius: 0 8px 8px 0;
+    transition: background 0.3s ease;
+}
+
+.pub-credential-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.pub-credential-name {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+}
+
+.pub-credential-details {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+    font-family: "Geist", sans-serif;
+}
+
+.pub-dot {
+    margin: 0 6px;
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+
+/* Corner Accents */
+.pub-card::before,
+.pub-corner::before,
+.pub-card::after,
+.pub-corner::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 0.2;
+    transition: 0.5s;
+    z-index: 3;
+}
+
+.pub-card::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.pub-corner::before {
+    top: -2px;
+    right: -2px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.pub-card::after {
+    bottom: -2px;
+    left: -2px;
+    border-top: none;
+    border-right: none;
+}
+
+.pub-corner::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+.pub-card:hover::before,
+.pub-card:hover .pub-corner::before,
+.pub-card:hover::after,
+.pub-card:hover .pub-corner::after {
+    opacity: 1;
+    border-color: var(--accentColor);
+}
+
+
+/* Base Responsive Alignment */
+@media only screen and (max-width: 1400px) {
+    .publications-section h2 {
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .publications-subtitle {
+        font-size: 16px;
+    }
+
+    .pub-card h3 {
+        font-size: 24px;
+    }
+
+    .pub-card h4 {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .pub-card-inner {
+        padding: 35px 30px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .publications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .publications-section {
+        padding: 70px 0px;
+        margin-bottom: 100px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .publications-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .publications-section {
+        padding-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .publications-section h2 {
+        font-size: 45px;
+        line-height: 45px;
+        margin-bottom: 20px;
+    }
+
+    .publications-subtitle {
+        font-size: 14px;
+        margin-bottom: 50px;
+    }
+
+    .pub-card-inner {
+        padding: 30px 25px;
+    }
+
+    .pub-card h3 {
+        font-size: 22px;
+    }
+
+    .pub-card h4 {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .pub-meta {
+        font-size: 12px;
+    }
+
+    .pub-description {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    .pub-credential-name {
+        font-size: 14px;
+    }
+
+    .pub-credential-details {
+        font-size: 12px;
+    }
+}
