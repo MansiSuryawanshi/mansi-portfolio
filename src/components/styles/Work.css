@@ -363,10 +363,27 @@
 @media only screen and (max-width: 1025px) {
   .featured-carousel-wrapper {
     min-height: auto;
+    display: block;
   }
 
   .project-slide {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
     min-height: auto;
+    opacity: 0;
+    display: none;
+    transform: none;
+    pointer-events: none;
+    transition: none;
+  }
+
+  .project-slide.active {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
   }
 
   .slide-split-layout {
