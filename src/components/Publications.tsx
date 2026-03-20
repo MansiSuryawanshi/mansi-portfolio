@@ -20,20 +20,21 @@ const Publications = () => {
     useEffect(() => {
         if (!sectionRef.current) return;
 
-        const mobile = isMobile();
-
-        if (mobile) {
+        if (isMobile()) {
             if (titleRef.current) {
-                gsap.set(titleRef.current, { autoAlpha: 1, y: 0, clearProps: "all" });
+                titleRef.current.style.opacity = "1";
+                titleRef.current.style.transform = "none";
             }
 
             if (subtitleRef.current) {
-                gsap.set(subtitleRef.current, { autoAlpha: 1, y: 0, clearProps: "all" });
+                subtitleRef.current.style.opacity = "1";
+                subtitleRef.current.style.transform = "none";
             }
 
             cardRefs.current.forEach((card) => {
                 if (!card) return;
-                gsap.set(card, { autoAlpha: 1, y: 0, scale: 1, clearProps: "all" });
+                card.style.opacity = "1";
+                card.style.transform = "none";
             });
 
             setTimeout(() => {
@@ -47,9 +48,9 @@ const Publications = () => {
             if (titleRef.current) {
                 gsap.fromTo(
                     titleRef.current,
-                    { autoAlpha: 0, y: 50 },
+                    { opacity: 0, y: 50 },
                     {
-                        autoAlpha: 1,
+                        opacity: 1,
                         y: 0,
                         duration: 1,
                         ease: "power3.out",
@@ -65,9 +66,9 @@ const Publications = () => {
             if (subtitleRef.current) {
                 gsap.fromTo(
                     subtitleRef.current,
-                    { autoAlpha: 0, y: 30 },
+                    { opacity: 0, y: 30 },
                     {
-                        autoAlpha: 1,
+                        opacity: 1,
                         y: 0,
                         duration: 1,
                         ease: "power3.out",
@@ -86,9 +87,9 @@ const Publications = () => {
 
                 gsap.fromTo(
                     card,
-                    { autoAlpha: 0, y: 50, scale: 0.96 },
+                    { opacity: 0, y: 50, scale: 0.96 },
                     {
-                        autoAlpha: 1,
+                        opacity: 1,
                         y: 0,
                         scale: 1,
                         duration: 0.8,
@@ -106,16 +107,7 @@ const Publications = () => {
             ScrollTrigger.refresh();
         }, sectionRef);
 
-        const onResize = () => {
-            ScrollTrigger.refresh();
-        };
-
-        window.addEventListener("resize", onResize);
-
-        return () => {
-            window.removeEventListener("resize", onResize);
-            ctx.revert();
-        };
+        return () => ctx.revert();
     }, []);
 
     return (
